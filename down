@@ -1,0 +1,4 @@
+#!/bin/sh
+
+docker compose -f compose.swoole.yml down
+docker compose -f compose.frankenphp.yml down
