@@ -1,0 +1,21 @@
+#!/bin/bash
+
+BUILD_OPTION=""
+
+if [ "$2" = "--build" ] || [ "$2" = "-b" ]; then
+    BUILD_OPTION="--build"
+fi
+
+if [ "$1" = "--frankenphp" ] || [ "$1" = "-f" ]; then
+    docker compose -f docker-compose.frankenphp.yml up -d $BUILD_OPTION
+elif [ "$1" = "--swoole" ] || [ "$1" = "-s" ]; then
+    docker compose -f docker-compose.swoole.yml up -d $BUILD_OPTION
+elif [ "$1" = "--nginx" ] || [ "$1" = "-n" ]; then
+    docker compose -f docker-compose.nginx.yml up -d $BUILD_OPTION
+else
+    echo "Error: You must specify either --frankenphp (-f) or --swoole (-s) or --nginx (-n)."
+    echo "Ex: $0 --frankenphp"
+    echo "Ex: $0 --frankenphp --build"
+    echo "Ex: $0 -f -b"
+    exit 1
+fi

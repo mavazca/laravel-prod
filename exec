@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if [ "$1" = "--frankenphp" ] || [ "$1" = "-f" ]; then
+  docker compose -f docker-compose.frankenphp.yml exec app bash
+elif [ "$1" = "--swoole" ] || [ "$1" = "-s" ]; then
+  docker compose -f docker-compose.swoole.yml exec app bash
+elif [ "$1" = "--nginx" ] || [ "$1" = "-n" ]; then
+  docker compose -f docker-compose.nginx.yml exec app bash
+else
+    echo "Error: You must specify either --frankenphp (-f) or --swoole (-s) or --nginx (-n)."
+    echo "Ex: $0 --frankenphp"
+    echo "Ex: $0 -f"
+    exit 1
+fi
